@@ -4,39 +4,40 @@ body, html {
     padding: 10px;
 }
 
-.waifus {
+.pictures {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
 }
 
-.waifu {
+.picture {
     display: flex;
     margin-bottom: 20px;
 }
 
-.waifu input {
+.picture input {
     margin-left: 30px;
     margin-right: 10px;
 }
 
-.waifu img {
+.picture img {
+    display: flex;
     width: 150px;
     height: 150px;
 }
 
-.save-waifus {
+.save-pictures {
     margin-left: 0px;
     margin-bottom: 50px;
 }
 
-.my-waifus {
+.my-pictures {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
 }
 
-.my-waifus img {
+.my-pictures img {
     width: 150px;
     height: 150px;
     margin-left: 30px;

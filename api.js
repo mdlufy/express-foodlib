@@ -3,47 +3,50 @@ const axios = require('axios');
 const fs = require('fs')
 const router = express.Router();
 
-const ApiUrl = 'https://foodish-api.herokuapp.com/api/'
-
 const pictureCount = 4;
 
-router.get('/get_waifus', (_, res) => {
-    currentWaifus = []
-    const waifuRequests = []
+router.get('/get_pictures/', (req, res) => {
+    currentPictures = []
+    const pictureRequests = []
+
+    category = req.query.category
+
+    let apiUrl = `https://foodish-api.herokuapp.com/api/images/${category}`
+
 
     for (let i = 0; i < pictureCount; i++) {
-        waifuRequests.push(axios(ApiUrl))
+        pictureRequests.push(axios(apiUrl))
     }
 
-    Promise.all(waifuRequests).then(responses => {
-        const waifus = []
+    Promise.all(pictureRequests).then(responses => {
+        const pictures = []
 
         for (const response of responses) {
-            waifus.push(response.data.image)
+            pictures.push(response.data.image)
         }
 
-        res.json(waifus)
+        res.json(pictures)
     }).catch(() => {
         res.json([])
     })
 })
 
-router.post('/save_waifus', (req, res) => {
+router.post('/save_pictures', (req, res) => {
     const users = JSON.parse(fs.readFileSync('./users.json', 'utf8'))
     const user = users.find(user => user.sid = req.user.sid)
-    const waifuUrl = req.body.waifuUrl
+    const pictureUrl = req.body.pictureUrl
 
-    user.savedWaifus.push(waifuUrl)
-    console.log("save waifu")
+    user.savedPictures.push(pictureUrl)
+    console.log("save picture")
     fs.writeFileSync('./users.json', JSON.stringify(users))
     res.end()
 })
 
-router.get('/saved_waifus', (req, res) => {
+router.get('/saved_pictures', (req, res) => {
     const users = JSON.parse(fs.readFileSync('./users.json', 'utf8'))
     const user = users.find(user => user.sid = req.user.sid)
 
-    res.json(user.savedWaifus)
+    res.json(user.savedPictures)
 })
 
 module.exports = router

@@ -1,44 +1,46 @@
-document.querySelector('.get-waifus').addEventListener('click', () => {
-    axios('/api/get_waifus').then(response => {
-        const waifus = response.data
-        const waifusEl = document.querySelectorAll('.waifu')
+document.querySelector('.get-pictures').addEventListener('click', () => {
+    category = document.querySelector('select[name="category"]')
+
+    axios('/api/get_pictures/',  {params: {category : category.value}}).then(response => {
+        const pictures = response.data
+        const picturesEl = document.querySelectorAll('.picture')
 
         for (let i = 0; i < 4; i++) {
 
-            waifusEl[i].querySelector('img').src = waifus[i]
+            picturesEl[i].querySelector('img').src = pictures[i]
         }
     }).catch(() => {
-        alert('Failes to get waifus')
+        alert('Failes to get pictures')
     })
 })
 
-document.querySelector('.save-waifus').addEventListener('click', () => {
-    const checkboxes = document.querySelectorAll('.waifu input')
+document.querySelector('.save-pictures').addEventListener('click', () => {
+    const checkboxes = document.querySelectorAll('.picture input')
 
     for (const checkbox of checkboxes) {
         if (checkbox.checked) {
-            const waifuImgEl = checkbox.nextElementSibling
+            const pictureImgEl = checkbox.nextElementSibling
 
-            axios.post('/api/save_waifus', { waifuUrl: waifuImgEl.src }).catch(() => {
+            axios.post('/api/save_pictures', { pictureUrl: pictureImgEl.src }).catch(() => {
                 alert('Failes to save picture')
             })
         }
     }
 })
 
-document.querySelector('.my-waifus-btn').addEventListener('click', () => {
-    axios('/api/saved_waifus').then(response => {
-        const myWaifusEl = document.querySelector('.my-waifus')
-        const waifus = response.data
+document.querySelector('.my-pictures-btn').addEventListener('click', () => {
+    axios('/api/saved_pictures').then(response => {
+        const myPicturesEl = document.querySelector('.my-pictures')
+        const pictures = response.data
 
-        myWaifusEl.innerHTML = ''
+        myPicturesEl.innerHTML = ''
 
-        for (const waifu of waifus) {
-            const waifuImg = document.createElement('img')
-            waifuImg.src = waifu
-            myWaifusEl.append(waifuImg)
+        for (const picture of pictures) {
+            const pictureImg = document.createElement('img')
+            pictureImg.src = picture
+            myPicturesEl.append(pictureImg)
         }
     }).catch(() => {
-        alert('Failes to get saved waifus')
+        alert('Failes to get saved pictures')
     })
 })

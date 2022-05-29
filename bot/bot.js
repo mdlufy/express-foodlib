@@ -11,13 +11,13 @@ const token = process.env.TOKEN;
 
 const bot = new TelegramBot(token, { polling: true });
 
-let currentWaifus = [];
+let currentPictures = [];
 const startMessage = `Commands:
 
-/get_waifus - show waifus
-/save_waifus [1-4] - save waifus to favourites
-/saved_waifus - show saved waifus
-/export - export waifus
+/get_picture - show picture
+/save_picture [1-4] - save picture to favourites
+/saved_pictures - show saved pictures
+/export - export pictures
 `;
 
 function getUUIDByUsername(username) {
@@ -50,7 +50,7 @@ bot.onText(/\/start\s?([0-9a-f-]{36})?/, async (msg, match) => {
         if (!user) {
             user = {};
             user.username = username;
-            user.savedWaifus = [];
+            user.savedPictures = [];
             users.push(user);
         }
 
@@ -67,19 +67,19 @@ bot.onText(/\/start\s?([0-9a-f-]{36})?/, async (msg, match) => {
     }
 });
 
-// Matches "/get_waifus"
-bot.onText(/\/get_waifus/, async (msg) => {
+// Matches "/get_pictures"
+bot.onText(/\/get_pictures/, async (msg) => {
     const chatId = msg.chat.id;
     const username = msg.from.username;
-    currentWaifus = [];
+    currentPictures = [];
 
-    await axios("/api/get_waifus", { params: { sid: getUUIDByUsername(username) } })
+    axios("/api/get_pictures", { params: { sid: getUUIDByUsername(username) } })
         .then((response) => {
-            const waifus = response.data;
+            const pictures = response.data;
 
-            for (const waifu of waifus) {
-                bot.sendPhoto(chatId, waifu);
-                currentWaifus.push(waifu);
+            for (const picture of pictures) {
+                bot.sendPhoto(chatId, picture);
+                currentPictures.push(picture);
             }
         })
         .catch((err) => {
@@ -88,31 +88,31 @@ bot.onText(/\/get_waifus/, async (msg) => {
                 return
             }
 
-            bot.sendMessage(chatId, "Failed to get waifus");
+            bot.sendMessage(chatId, "Failed to get Pictures");
         });
 });
 
-// Matches "/save_waifu [1-4]"
-bot.onText(/\/save_waifus\s+([1-9]+)/, (msg, match) => {
+// Matches "/save_picture [1-4]"
+bot.onText(/\/save_pictures\s+([1-9]+)/, (msg, match) => {
     const chatId = msg.chat.id;
-    const waifuImgIdx = parseInt(match[1]);
+    const pictureImgIdx = parseInt(match[1]);
     const username = msg.from.username;
 
-    if (waifuImgIdx < 1 || waifuImgIdx > 4) {
+    if (pictureImgIdx < 1 || pictureImgIdx > 4) {
         bot.sendMessage(chatId, "Index should be 1-4");
         return;
     }
 
-    const waifu = currentWaifus[waifuImgIdx - 1];
+    const picture = currentPictures[pictureImgIdx - 1];
 
-    if (!waifu) {
-        bot.sendMessage(chatId, "First get waifus through /get_waifus");
+    if (!picture) {
+        bot.sendMessage(chatId, "First get Pictures through /get_pictures");
         return;
     }
 
     axios
-        .post("/api/save_waifus", {
-            waifuUrl: waifu,
+        .post("/api/save_pictures", {
+            pictureUrl: picture,
             sid: getUUIDByUsername(username)
         })
         .catch((err) => {
@@ -125,22 +125,22 @@ bot.onText(/\/save_waifus\s+([1-9]+)/, (msg, match) => {
         });
 });
 
-// Matches "/saved_waifus"
-bot.onText(/\/saved_waifus/, (msg) => {
+// Matches "/saved_pictures"
+bot.onText(/\/saved_pictures/, (msg) => {
     const chatId = msg.chat.id;
     const username = msg.from.username;
 
-    axios("/api/saved_waifus", { params: { sid: getUUIDByUsername(username) } })
+    axios("/api/saved_pictures", { params: { sid: getUUIDByUsername(username) } })
         .then((response) => {
-            const waifus = response.data;
+            const pictures = response.data;
 
-            if (!waifus.length) {
-                bot.sendMessage(chatId, "You don't have waifu yet");
+            if (!pictures.length) {
+                bot.sendMessage(chatId, "You don't have picture yet");
                 return;
             }
 
-            for (const waifu of waifus) {
-                bot.sendPhoto(chatId, waifu);
+            for (const picture of pictures) {
+                bot.sendPhoto(chatId, picture);
             }
         })
         .catch((err) => {
@@ -149,7 +149,7 @@ bot.onText(/\/saved_waifus/, (msg) => {
                 return
             }
 
-            bot.sendMessage(chatId, "Failed to get waifus");
+            bot.sendMessage(chatId, "Failed to get Pictures");
         });
 });
 
@@ -158,13 +158,13 @@ bot.onText(/\/export/, (msg) => {
     const chatId = msg.chat.id;
     const username = msg.from.username;
 
-    axios("/api/saved_waifus", { params: { sid: getUUIDByUsername(username) } })
+    axios("/api/saved_pictures", { params: { sid: getUUIDByUsername(username) } })
         .then((response) => {
-            const waifus = response.data;
-            const jsonWaifus = JSON.stringify(waifus)
+            const pictures = response.data;
+            const jsonPictures = JSON.stringify(pictures)
 
-            bot.sendDocument(chatId, Buffer.from(jsonWaifus), {}, {
-                filename: 'waifus.json',
+            bot.sendDocument(chatId, Buffer.from(jsonPictures), {}, {
+                filename: 'pictures.json',
                 contentType: 'application/json'
             })
         })
@@ -174,6 +174,6 @@ bot.onText(/\/export/, (msg) => {
                 return
             }
 
-            bot.sendMessage(chatId, "Failed to get waifus");
+            bot.sendMessage(chatId, "Failed to get Pictures");
         });
 })

@@ -10,30 +10,40 @@
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	</head>
 	<body>
-		<button class="get-waifus">Get</button>
-		<div class="waifus">
-			<div class="waifu">
+		<laber for="category">Enter category:</laber>
+			<select name="category" autofocus required>
+			 <option value="biryani">Biryani</option>
+			 <option value="burger">Burger</option>
+			 <option value="butter-chicken">Butter-chicken</option>
+			 <option value="dessert">Dessert</option>
+			 <option value="dosa">Dosa</option>
+			 <option value="pizza">Pizza</option>
+			 <option value="rice">Rice</option>
+			</select> 
+		<button class="get-pictures">Get food</button>
+		<div class="pictures">
+			<div class="picture">
 				<input type="checkbox" />
 				<img src="" />
 			</div>
-			<div class="waifu">
+			<div class="picture">
 				<input type="checkbox" />
 				<img src="" />
 			</div>
-			<div class="waifu">
+			<div class="picture">
 				<input type="checkbox" />
 				<img src="" />
 			</div>
-			<div class="waifu">
+			<div class="picture">
 				<input type="checkbox" />
 				<img src="" />
 			</div>
 		</div>
-		<button class="save-waifus">Save</button>
+		<button class="save-pictures">Save</button>
 		<div class="liked">
 			<h4>Liked</h4>
-			<button class="my-waifus-btn">Show favourites</button>
-			<div class="my-waifus"></div>
+			<button class="my-pictures-btn">Show favourites</button>
+			<div class="my-pictures"></div>
 		</div>
 
 		<script src="public/main.js"></script>
