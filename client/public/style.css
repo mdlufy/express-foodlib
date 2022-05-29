@@ -1,0 +1,44 @@
+body, html {
+    margin: 0;
+    height: 100%;
+    padding: 10px;
+}
+
+.waifus {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.waifu {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.waifu input {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.waifu img {
+    width: 150px;
+    height: 150px;
+}
+
+.save-waifus {
+    margin-left: 0px;
+    margin-bottom: 50px;
+}
+
+.my-waifus {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.my-waifus img {
+    width: 150px;
+    height: 150px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
