@@ -72,9 +72,7 @@ bot.onText(/\/get_pictures\s+\w+/, async (msg, match) => {
     const chatId = msg.chat.id;
     const username = msg.from.username;
     
-    match = String(match).split(/\s+/)
-
-    const pictureCategory = match[1];
+    const pictureCategory = String(match).split(/\s+/)[1];
 
     currentPictures = [];
 
