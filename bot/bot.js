@@ -14,8 +14,8 @@ const bot = new TelegramBot(token, { polling: true });
 let currentPictures = [];
 const startMessage = `Commands:
 
-/get_picture - show picture
-/save_picture [1-4] - save picture to favourites
+/get_pictures [category] - show picture
+/save_pictures [1-4] - save picture to favourites
 /saved_pictures - show saved pictures
 /export - export pictures
 `;
@@ -68,12 +68,17 @@ bot.onText(/\/start\s?([0-9a-f-]{36})?/, async (msg, match) => {
 });
 
 // Matches "/get_pictures"
-bot.onText(/\/get_pictures/, async (msg) => {
+bot.onText(/\/get_pictures\s+\w+/, async (msg, match) => {
     const chatId = msg.chat.id;
     const username = msg.from.username;
+    
+    match = String(match).split(/\s+/)
+
+    const pictureCategory = match[1];
+
     currentPictures = [];
 
-    axios("/api/get_pictures", { params: { sid: getUUIDByUsername(username) } })
+    axios("/api/get_pictures", { params: { sid: getUUIDByUsername(username), category: pictureCategory } })
         .then((response) => {
             const pictures = response.data;
 
@@ -92,7 +97,7 @@ bot.onText(/\/get_pictures/, async (msg) => {
         });
 });
 
-// Matches "/save_picture [1-4]"
+// Matches "/save_pictures [1-4]"
 bot.onText(/\/save_pictures\s+([1-9]+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const pictureImgIdx = parseInt(match[1]);

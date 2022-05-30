@@ -5,7 +5,7 @@ const router = express.Router();
 
 const pictureCount = 4;
 
-router.get('/get_pictures/', (req, res) => {
+router.get('/get_pictures', (req, res) => {
     currentPictures = []
     const pictureRequests = []
 
