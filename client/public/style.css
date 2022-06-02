@@ -4,6 +4,17 @@ body, html {
     padding: 10px;
 }
 
+button {
+    background-color: rgb(31, 177, 222);
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    display: inline-block;
+}
+
 .pictures {
     display: flex;
     flex-wrap: wrap;
@@ -15,16 +26,6 @@ body, html {
     margin-bottom: 20px;
 }
 
-button {
-    background-color: rgb(31, 177, 222);
-    padding: 10px;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    display: inline-block;
-}
 
 .picture input {
     margin-left: 30px;
