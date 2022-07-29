@@ -17,11 +17,11 @@ body, html {
 
 button {
     background-color: rgb(31, 177, 222);
-    padding: 10px;
+    padding: 6px;
     cursor: pointer;
     outline: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     color: white;
     display: inline-block;
 }
