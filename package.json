@@ -9,7 +9,7 @@
     "pug": "^3.0.2"
   },
   "scripts": {
-    "postinstall": "find . -maxdepth 2 -name package.json -execdir npm install \\;",
+    "postinstall": "cd bot && npm install",
     "start": "node server.js",
     "dev": "(cd bot && npm run start) & npm run start"
   },
