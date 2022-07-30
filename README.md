@@ -2,6 +2,8 @@
 
 "FoodLib" - app written in Express and based on telegram bot functionality.
 
+Finished application [here](https://food-lib.herokuapp.com)
+
 ## Overview
 
 This web application creates an online catalog for a small food library, where users can browse available dishes from a certain category and save them to favorites.
