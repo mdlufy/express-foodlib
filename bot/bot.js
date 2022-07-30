@@ -7,7 +7,7 @@ require('dotenv').config();
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = "http://localhost:3005";
 
-const token = "5158311856:AAGZ8IUENp3zVc2_2bPHbriE54Ai95csLXY";
+const token = process.env.TOKEN;
 
 const bot = new TelegramBot(token, { polling: true });
 
