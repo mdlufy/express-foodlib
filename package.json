@@ -9,23 +9,24 @@
     "pug": "^3.0.2"
   },
   "scripts": {
+    "install": "(cd bot && npm install) & npm install",
     "start": "node server.js",
     "dev": "(cd bot && npm run start) & npm run start"
   },
-  "name": "express-simple-app",
+  "name": "express-foodlib",
   "description": "\"FoodLib\" - app written in Express and based on telegram bot functionality.",
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mdlufy/express-simple-app.git"
+    "url": "git+https://github.com/mdlufy/express-foodlib.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mdlufy/express-simple-app/issues"
+    "url": "https://github.com/mdlufy/express-foodlib/issues"
   },
-  "homepage": "https://github.com/mdlufy/express-simple-app#readme"
+  "homepage": "https://github.com/mdlufy/express-foodlib#readme"
 }

@@ -16,9 +16,8 @@ The main features that have currently been implemented are:
 ## Quick Start
 
 ```
-Fork repository
-git clone git@github.com:<YourUserName>/express-simple-app.git
-cd express-simple-app
+git clone git@github.com:mdlufy/express-foodlib.git
+cd express-foodlib
 npm install
 npm run dev
 ```
