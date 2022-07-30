@@ -10,7 +10,7 @@
   },
   "scripts": {
     "postinstall": "cd bot && npm install",
-    "start": "node server.js",
+    "start": "node server.js & (cd bot && npm run start)",
     "dev": "(cd bot && npm run start) & npm run start"
   },
   "name": "express-foodlib",
