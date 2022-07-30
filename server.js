@@ -72,4 +72,6 @@ app.get('/', (_, res) => {
 
 app.get('/public/*', renderPublicFile)
 
-app.listen(3005)
+const PORT = process.env.PORT || 3005;
+
+app.listen(PORT)
