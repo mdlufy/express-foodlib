@@ -9,7 +9,7 @@
     "pug": "^3.0.2"
   },
   "scripts": {
-    "install": "(cd bot && npm install) & npm install",
+    "postinstall": "find . -maxdepth 2 -name package.json -execdir npm install \\;",
     "start": "node server.js",
     "dev": "(cd bot && npm run start) & npm run start"
   },
@@ -23,10 +23,13 @@
     "url": "git+https://github.com/mdlufy/express-foodlib.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "mdlufy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mdlufy/express-foodlib/issues"
   },
-  "homepage": "https://github.com/mdlufy/express-foodlib#readme"
+  "homepage": "https://github.com/mdlufy/express-foodlib#readme",
+  "engines": {
+      "node": "14.18.2"
+  }
 }
