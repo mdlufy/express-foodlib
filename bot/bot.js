@@ -61,7 +61,7 @@ bot.onText(/\/start\s?([0-9a-f-]{36})?/, async (msg, match) => {
 
         fs.writeFileSync("../users.json", JSON.stringify(users));
 
-        bot.sendMessage(chatId, "https://localhost:3005");
+        bot.sendMessage(chatId, "I started!");
     } else {
         bot.sendMessage(chatId, startMessage);
     }
