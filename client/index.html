@@ -7,7 +7,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="public/style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <laber for="category">Enter category:</laber>
@@ -23,23 +23,15 @@
     <button class="get-pictures">Get food</button>
     <div class="pictures">
       <div class="picture">
-        <input type="checkbox" />
-        <img src="" />
       </div>
       <div class="picture">
-        <input type="checkbox" />
-        <img src="" />
       </div>
       <div class="picture">
-        <input type="checkbox" />
-        <img src="" />
       </div>
       <div class="picture">
-        <input type="checkbox" />
-        <img src="" />
       </div>
     </div>
-    <button class="save-pictures">Save</button>
+    <button class="save-pictures" style="display: none;">Save</button>
     <div class="liked">
       <h4>Liked</h4>
       <button class="my-pictures-btn">Show favourites</button>
